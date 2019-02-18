@@ -1,8 +1,14 @@
+import dotenv from "dotenv";
 import express from "express";
 import path from "path";
-const app = express();
 
-const port = 8080;
+// initialize configuration
+dotenv.config();
+
+// port is available on Node.js runtime as environment variable
+const port = process.env.SERVER_PORT;
+
+const app = express();
 
 // configure express to use EJS
 app.set("views", path.join(__dirname, "views"));
