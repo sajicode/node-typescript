@@ -1,14 +1,14 @@
-import * as express from 'express';
-import pgPromise from 'pg-promise';
+import * as express from "express";
+import pgPromise from "pg-promise";
 
 export const register = (app: express.Application) => {
 	const oidc = app.locals.oidc;
-	const port = parseInt(process.env.PGPORT || '5432', 10);
+	const port = parseInt(process.env.PGPORT || "5432", 10);
 	const config = {
-		databse: process.env.PGDATABASE || 'postgres',
-		host: process.env.PGHOST || 'localhost',
+		databse: process.env.PGDATABASE || "postgres",
+		host: process.env.PGHOST || "localhost",
 		port,
-		user: process.env.PGUSER || 'postgres'
+		user: process.env.PGUSER || "postgres"
 	};
 
 	const pgp = pgPromise();

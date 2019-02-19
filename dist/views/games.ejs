@@ -13,9 +13,74 @@
 <body>
   <% include partials/nav %>
   <div class="container">
-    <h1 class="header">Game Inventory</h1>
-    <p>Your future list of games!</p>
+    <div id="app">
+      <div class="row" id="guitarList">
+        <h3>Guitar list</h3>
+        <table v-if="hazGames">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Title</th>
+              <th>Genre</th>
+              <th>Company</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="game in games">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <button id="guitarDelete" @click="confirmDeleteGame(game.id)" class="btn-small"><i
+                    class="material-icons right">delete</i>Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p v-if="noGames">No games yet!</p>
+      </div>
+      <div class="row" id="guitarEdit">
+        <h3>Add a game</h3>
+        <form class="col s12" @submit.prevent="addGame">
+          <div class="row">
+            <div class="input-field col s6">
+              <input v-model="year" ref="year" placeholder="2009" id="year" type="text" class="validate">
+              <label for="brand">Year</label>
+            </div>
+            <div class="input-field col s6">
+              <input v-model="brand" ref="brand" placeholder="Assassins Creed" id="brand" type="text" class="validate">
+              <label for="brand">Title</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input v-model="model" ref="model" placeholder="Adventure" id="model" type="text" class="validate">
+              <label for="model">Genre</label>
+            </div>
+            <div class="input-field col s6">
+              <input v-model="color" ref="color" placeholder="Activision" id="color" type="text" class="validate">
+              <label for="model">Company</label>
+            </div>
+          </div>
+          <button id="guitarEditSubmit" class="btn" type="submit"><i
+              class="material-icons right">send</i>Submit</button>
+        </form>
+      </div>
+      <div id="deleteConfirm" ref="deleteConfirm" class="modal">
+        <div class="modal-content">
+          <h4>Confirm delete</h4>
+          <p>Delete ?</p>
+        </div>
+        <div class="modal-footer">
+          <button @click="deleteGame(selectedGameId)" class="modal-close btn-flat">Ok</button>
+          <button class="modal-close btn-flat">Cancel</button>
+        </div>
+      </div>
+    </div>
   </div>
+  <script src="js/main.js"></script>
 </body>
 
 </html>
